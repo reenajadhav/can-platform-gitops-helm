@@ -10,7 +10,7 @@ spec:
   source:
     repoURL: https://github.com/reenajadhav/can-platform-gitops-helm.git
     targetRevision: HEAD
-    path: platform/pvc
+    path: platform/redis
 
   destination:
     server: https://kubernetes.default.svc
