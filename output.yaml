@@ -1,25 +1,25 @@
 ---
-# Source: vehicle_simulator/templates/serviceaccount.yaml
+# Source: vehicle-simulator/templates/serviceaccount.yaml
 apiVersion: v1
 kind: ServiceAccount
 metadata:
-  name: vehicle-simulator-vehicle_simulator
+  name: vehicle-simulator
   labels:
-    helm.sh/chart: vehicle_simulator-0.1.0
-    app.kubernetes.io/name: vehicle_simulator
+    helm.sh/chart: vehicle-simulator-0.1.0
+    app.kubernetes.io/name: vehicle-simulator
     app.kubernetes.io/instance: vehicle-simulator
     app.kubernetes.io/version: "1.16.0"
     app.kubernetes.io/managed-by: Helm
 automountServiceAccountToken: true
 ---
-# Source: vehicle_simulator/templates/service.yaml
+# Source: vehicle-simulator/templates/service.yaml
 apiVersion: v1
 kind: Service
 metadata:
-  name: vehicle-simulator-vehicle_simulator
+  name: vehicle-simulator
   labels:
-    helm.sh/chart: vehicle_simulator-0.1.0
-    app.kubernetes.io/name: vehicle_simulator
+    helm.sh/chart: vehicle-simulator-0.1.0
+    app.kubernetes.io/name: vehicle-simulator
     app.kubernetes.io/instance: vehicle-simulator
     app.kubernetes.io/version: "1.16.0"
     app.kubernetes.io/managed-by: Helm
@@ -31,17 +31,17 @@ spec:
       protocol: TCP
       name: http
   selector:
-    app.kubernetes.io/name: vehicle_simulator
+    app.kubernetes.io/name: vehicle-simulator
     app.kubernetes.io/instance: vehicle-simulator
 ---
-# Source: vehicle_simulator/templates/deployment.yaml
+# Source: vehicle-simulator/templates/deployment.yaml
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: vehicle-simulator-vehicle_simulator
+  name: vehicle-simulator
   labels:
-    helm.sh/chart: vehicle_simulator-0.1.0
-    app.kubernetes.io/name: vehicle_simulator
+    helm.sh/chart: vehicle-simulator-0.1.0
+    app.kubernetes.io/name: vehicle-simulator
     app.kubernetes.io/instance: vehicle-simulator
     app.kubernetes.io/version: "1.16.0"
     app.kubernetes.io/managed-by: Helm
@@ -49,21 +49,21 @@ spec:
   replicas: 1
   selector:
     matchLabels:
-      app.kubernetes.io/name: vehicle_simulator
+      app.kubernetes.io/name: vehicle-simulator
       app.kubernetes.io/instance: vehicle-simulator
   template:
     metadata:
       labels:
-        helm.sh/chart: vehicle_simulator-0.1.0
-        app.kubernetes.io/name: vehicle_simulator
+        helm.sh/chart: vehicle-simulator-0.1.0
+        app.kubernetes.io/name: vehicle-simulator
         app.kubernetes.io/instance: vehicle-simulator
         app.kubernetes.io/version: "1.16.0"
         app.kubernetes.io/managed-by: Helm
     spec:
-      serviceAccountName: vehicle-simulator-vehicle_simulator
+      serviceAccountName: vehicle-simulator
       containers:
-        - name: vehicle_simulator
-          image: "vehicle-data-simulator:12"
+        - name: vehicle-simulator
+          image: "vehicle-data-simulator:16"
           imagePullPolicy: Never
           ports:
             - name: http
@@ -85,14 +85,14 @@ spec:
           persistentVolumeClaim:
             claimName: can-pvc
 ---
-# Source: vehicle_simulator/templates/tests/test-connection.yaml
+# Source: vehicle-simulator/templates/tests/test-connection.yaml
 apiVersion: v1
 kind: Pod
 metadata:
-  name: "vehicle-simulator-vehicle_simulator-test-connection"
+  name: "vehicle-simulator-test-connection"
   labels:
-    helm.sh/chart: vehicle_simulator-0.1.0
-    app.kubernetes.io/name: vehicle_simulator
+    helm.sh/chart: vehicle-simulator-0.1.0
+    app.kubernetes.io/name: vehicle-simulator
     app.kubernetes.io/instance: vehicle-simulator
     app.kubernetes.io/version: "1.16.0"
     app.kubernetes.io/managed-by: Helm
@@ -103,5 +103,5 @@ spec:
     - name: wget
       image: busybox
       command: ['wget']
-      args: ['vehicle-simulator-vehicle_simulator:8000']
+      args: ['vehicle-simulator:8000']
   restartPolicy: Never

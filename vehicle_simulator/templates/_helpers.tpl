@@ -1,7 +1,7 @@
 {{/*
 Expand the name of the chart.
 */}}
-{{- define "vehicle-simulator.name" -}}
+{{- define "vehicle_simulator.name" -}}
 {{- default .Chart.Name .Values.nameOverride | trunc 63 | trimSuffix "-" }}
 {{- end }}
 
@@ -10,7 +10,7 @@ Create a default fully qualified app name.
 We truncate at 63 chars because some Kubernetes name fields are limited to this (by the DNS naming spec).
 If release name contains chart name it will be used as a full name.
 */}}
-{{- define "vehicle-simulator.fullname" -}}
+{{- define "vehicle_simulator.fullname" -}}
 {{- if .Values.fullnameOverride }}
 {{- .Values.fullnameOverride | trunc 63 | trimSuffix "-" }}
 {{- else }}
@@ -26,16 +26,16 @@ If release name contains chart name it will be used as a full name.
 {{/*
 Create chart name and version as used by the chart label.
 */}}
-{{- define "vehicle-simulator.chart" -}}
+{{- define "vehicle_simulator.chart" -}}
 {{- printf "%s-%s" .Chart.Name .Chart.Version | replace "+" "_" | trunc 63 | trimSuffix "-" }}
 {{- end }}
 
 {{/*
 Common labels
 */}}
-{{- define "vehicle-simulator.labels" -}}
-helm.sh/chart: {{ include "vehicle-simulator.chart" . }}
-{{ include "vehicle-simulator.selectorLabels" . }}
+{{- define "vehicle_simulator.labels" -}}
+helm.sh/chart: {{ include "vehicle_simulator.chart" . }}
+{{ include "vehicle_simulator.selectorLabels" . }}
 {{- if .Chart.AppVersion }}
 app.kubernetes.io/version: {{ .Chart.AppVersion | quote }}
 {{- end }}
@@ -45,17 +45,17 @@ app.kubernetes.io/managed-by: {{ .Release.Service }}
 {{/*
 Selector labels
 */}}
-{{- define "vehicle-simulator.selectorLabels" -}}
-app.kubernetes.io/name: {{ include "vehicle-simulator.name" . }}
+{{- define "vehicle_simulator.selectorLabels" -}}
+app.kubernetes.io/name: {{ include "vehicle_simulator.name" . }}
 app.kubernetes.io/instance: {{ .Release.Name }}
 {{- end }}
 
 {{/*
 Create the name of the service account to use
 */}}
-{{- define "vehicle-simulator.serviceAccountName" -}}
+{{- define "vehicle_simulator.serviceAccountName" -}}
 {{- if .Values.serviceAccount.create }}
-{{- default (include "vehicle-simulator.fullname" .) .Values.serviceAccount.name }}
+{{- default (include "vehicle_simulator.fullname" .) .Values.serviceAccount.name }}
 {{- else }}
 {{- default "default" .Values.serviceAccount.name }}
 {{- end }}

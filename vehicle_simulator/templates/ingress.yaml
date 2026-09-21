@@ -2,9 +2,9 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: {{ include "vehicle-simulator.fullname" . }}
+  name: {{ include "vehicle_simulator.fullname" . }}
   labels:
-    {{- include "vehicle-simulator.labels" . | nindent 4 }}
+    {{- include "vehicle_simulator.labels" . | nindent 4 }}
   {{- with .Values.ingress.annotations }}
   annotations:
     {{- toYaml . | nindent 4 }}
@@ -35,7 +35,7 @@ spec:
             {{- end }}
             backend:
               service:
-                name: {{ include "vehicle-simulator.fullname" $ }}
+                name: {{ include "vehicle_simulator.fullname" $ }}
                 port:
                   number: {{ $.Values.service.port }}
           {{- end }}
