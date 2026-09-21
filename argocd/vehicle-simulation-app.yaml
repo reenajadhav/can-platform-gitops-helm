@@ -15,7 +15,7 @@ spec:
 
     targetRevision: HEAD
 
-    path: applications/simulator
+    path: applications/vehicle-simulator
 
   destination:
     server: https://kubernetes.default.svc
