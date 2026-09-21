@@ -1,0 +1,28 @@
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+
+metadata:
+  name: can-vehicle-simulator
+
+  namespace: argocd
+
+spec:
+  project: default
+
+  source:
+    repoURL: https://github.com/reenajadhav/can-platform-gitops.git
+
+    targetRevision: HEAD
+
+    path: applications/simulator
+
+  destination:
+    server: https://kubernetes.default.svc
+
+    namespace: default
+
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
