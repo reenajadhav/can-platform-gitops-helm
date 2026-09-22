@@ -11,7 +11,7 @@ metadata:
 spec:
   selector:
     matchLabels:
-      app: vehicle-data-simulator
+      app: vehicle-simulator
 
   namespaceSelector:
     matchNames:

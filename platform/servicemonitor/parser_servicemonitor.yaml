@@ -11,8 +11,8 @@ metadata:
 spec:
   selector:
     matchLabels:
-      app: can-parser
-
+      app: parser
+      
   namespaceSelector:
     matchNames:
       - default
