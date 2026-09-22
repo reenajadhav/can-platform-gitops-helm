@@ -1,28 +1,23 @@
 ---
 apiVersion: argoproj.io/v1alpha1
 kind: Application
-
 metadata:
-  name: can-vehicle-simulator
-
+  name: dashboard-qa
   namespace: argocd
-
 spec:
   project: default
-
   source:
     repoURL: https://github.com/reenajadhav/can-platform-gitops-helm.git
-
     targetRevision: HEAD
-
-    path: applications/vehicle-simulator
-
+    path: applications/dashboard
+    helm:
+      valueFiles:
+        - values-qa.yaml
   destination:
     server: https://kubernetes.default.svc
-
-    namespace: default
-
+    namespace: qa
   syncPolicy:
     automated:
       prune: true
       selfHeal: true
+

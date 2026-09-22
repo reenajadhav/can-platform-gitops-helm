@@ -1,21 +1,21 @@
+---
 apiVersion: argoproj.io/v1alpha1
 kind: Application
-
 metadata:
-  name: pvc
-
+  name: vehicle-simulator-dev
+  namespace: argocd
 spec:
   project: default
-
   source:
     repoURL: https://github.com/reenajadhav/can-platform-gitops-helm.git
     targetRevision: HEAD
-    path: platform/redis
-
+    path: applications/vehicle-simulator
+    helm:
+      valueFiles:
+        - values-dev.yaml
   destination:
     server: https://kubernetes.default.svc
-    namespace: default
-
+    namespace: dev
   syncPolicy:
     automated:
       prune: true

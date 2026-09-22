@@ -1,0 +1,22 @@
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: vehicle-simulator-qa
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/reenajadhav/can-platform-gitops-helm.git
+    targetRevision: HEAD
+    path: applications/vehicle-simulator
+    helm:
+      valueFiles:
+        - values-qa.yaml
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: qa
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true

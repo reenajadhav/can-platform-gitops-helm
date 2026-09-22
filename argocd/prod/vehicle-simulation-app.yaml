@@ -1,29 +1,22 @@
 ---
 apiVersion: argoproj.io/v1alpha1
 kind: Application
-
 metadata:
-  name: can-dashboard
-
+  name: vehicle-simulator-prod
   namespace: argocd
-
 spec:
   project: default
-
   source:
     repoURL: https://github.com/reenajadhav/can-platform-gitops-helm.git
-
     targetRevision: HEAD
-
-    path: applications/dashboard
-
+    path: applications/vehicle-simulator
+    helm:
+      valueFiles:
+        - values-prod.yaml
   destination:
     server: https://kubernetes.default.svc
-
-    namespace: default
-
+    namespace: prod
   syncPolicy:
     automated:
       prune: true
       selfHeal: true
-

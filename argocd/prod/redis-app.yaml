@@ -1,0 +1,24 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+
+metadata:
+  name: redis-prod
+  namespace: argocd
+
+spec:
+  project: default
+
+  source:
+    repoURL: https://github.com/reenajadhav/can-platform-gitops-helm.git
+    targetRevision: HEAD
+    path: platform/redis
+
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: prod
+
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+``

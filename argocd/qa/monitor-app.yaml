@@ -2,7 +2,8 @@ apiVersion: argoproj.io/v1alpha1
 kind: Application
 
 metadata:
-  name: pvc
+  name: monitor-qa
+  namespace: argocd
 
 spec:
   project: default
@@ -10,11 +11,10 @@ spec:
   source:
     repoURL: https://github.com/reenajadhav/can-platform-gitops-helm.git
     targetRevision: HEAD
-    path: platform/pvc
-
+    path: platform/servicemonitor
   destination:
     server: https://kubernetes.default.svc
-    namespace: default
+    namespace: qa
 
   syncPolicy:
     automated:
