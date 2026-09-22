@@ -11,7 +11,7 @@ spec:
   project: default
 
   source:
-    repoURL: https://github.com/reenajadhav/can-platform-gitops.git
+    repoURL: https://github.com/reenajadhav/can-platform-gitops-helm.git
 
     targetRevision: HEAD
 
