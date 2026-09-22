@@ -11,7 +11,8 @@ metadata:
 spec:
   selector:
     matchLabels:
-      app: vehicle-simulator
+      app.kubernetes.io/instance: vehicle-simulator
+      app.kubernetes.io/name: vehicle-simulator
 
   namespaceSelector:
     matchNames:

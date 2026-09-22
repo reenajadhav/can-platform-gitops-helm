@@ -11,7 +11,8 @@ metadata:
 spec:
   selector:
     matchLabels:
-      app: parser
+      app.kubernetes.io/instance: parser
+      app.kubernetes.io/name: parser
       
   namespaceSelector:
     matchNames:
