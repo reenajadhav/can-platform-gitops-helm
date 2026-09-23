@@ -2,7 +2,7 @@ apiVersion: argoproj.io/v1alpha1
 kind: Application
 
 metadata:
-  name: monitor-qa
+  name: monitor
   namespace: argocd
 
 spec:
@@ -14,7 +14,7 @@ spec:
     path: platform/servicemonitor
   destination:
     server: https://kubernetes.default.svc
-    namespace: qa
+    namespace: default
 
   syncPolicy:
     automated:

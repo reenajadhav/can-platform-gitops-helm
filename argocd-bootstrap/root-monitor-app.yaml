@@ -1,8 +1,9 @@
+---
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 
 metadata:
-  name: monitor-prod
+  name: can-platform-root
   namespace: argocd
 
 spec:
@@ -10,13 +11,15 @@ spec:
 
   source:
     repoURL: https://github.com/reenajadhav/can-platform-gitops-helm.git
-    targetRevision: HEAD
-    path: platform/servicemonitor
+    targetRevision: master
+    path: argocd/shared-resource
+
   destination:
     server: https://kubernetes.default.svc
-    namespace: prod
+    namespace: argocd
 
   syncPolicy:
     automated:
       prune: true
       selfHeal: true
+
