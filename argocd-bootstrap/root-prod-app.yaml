@@ -4,7 +4,7 @@ kind: Application
 
 metadata:
   name: can-platform-root-prod
-  namespace: argocd-prod
+  namespace: argocd
 
 spec:
   project: default

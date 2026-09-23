@@ -12,7 +12,7 @@ spec:
   source:
     repoURL: https://github.com/reenajadhav/can-platform-gitops-helm.git
     targetRevision: master
-    path: argocd
+    path: argocd-bootstrap
 
   destination:
     server: https://kubernetes.default.svc
