@@ -1,0 +1,7 @@
+release: 51
+dashboard:
+  tag: "51"
+parser:
+  tag: "51"
+simulator:
+  tag: "51"
