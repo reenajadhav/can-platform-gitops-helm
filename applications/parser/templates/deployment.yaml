@@ -76,3 +76,22 @@ spec:
       tolerations:
         {{- toYaml . | nindent 8 }}
       {{- end }}
+
+env:
+  - name: REDIS_HOST
+    valueFrom:
+      secretKeyRef:
+        name: can-platform-secret
+        key: REDIS_HOST
+
+  - name: REDIS_PORT
+    valueFrom:
+      secretKeyRef:
+        name: can-platform-secret
+        key: REDIS_PORT
+
+  - name: ENVIRONMENT
+    valueFrom:
+      secretKeyRef:
+        name: can-platform-secret
+        key: ENVIRONMENT
