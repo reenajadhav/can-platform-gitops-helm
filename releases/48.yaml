@@ -1,0 +1,7 @@
+release: 48
+dashboard:
+  tag: "48"
+parser:
+  tag: "48"
+simulator:
+  tag: "48"
