@@ -82,7 +82,7 @@ spec:
               valueFrom:
                 secretKeyRef:
                   name: can-platform-secret
-                  key: DB_PATH
+                  key: DB-PATH
       {{- with .Values.volumes }}
       volumes:
         {{- toYaml . | nindent 8 }}
