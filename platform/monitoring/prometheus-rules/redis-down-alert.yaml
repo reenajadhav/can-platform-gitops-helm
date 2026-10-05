@@ -1,0 +1,24 @@
+apiVersion: monitoring.coreos.com/v1
+kind: PrometheusRule
+metadata:
+  name: redis-down-alert
+  namespace: monitoring
+
+spec:
+  groups:
+  - name: redis-alerts
+
+    rules:
+    - alert: RedisDown
+
+      expr: up{job="redis"} == 0
+
+      for: 1m
+
+      labels:
+        severity: critical
+
+      annotations:
+        summary: "Redis service is down"
+
+        description: "Redis target has been unreachable for more than 1 minute."

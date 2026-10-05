@@ -1,0 +1,24 @@
+apiVersion: monitoring.coreos.com/v1
+kind: PrometheusRule
+metadata:
+  name: simulator-down-alert
+  namespace: monitoring
+
+spec:
+  groups:
+  - name: simulator-alerts
+
+    rules:
+    - alert: SimulatorDown
+
+      expr: up{job="vehicle-simulator"} == 0
+
+      for: 1m
+
+      labels:
+        severity: critical
+
+      annotations:
+        summary: "Vehicle Simulator is down"
+
+        description: "Simulator target unavailable for more than 1 minute."

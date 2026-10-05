@@ -1,0 +1,24 @@
+apiVersion: monitoring.coreos.com/v1
+kind: PrometheusRule
+metadata:
+  name: test-alert
+  namespace: monitoring
+
+spec:
+  groups:
+  - name: test-alerts
+
+    rules:
+    - alert: TestAlert
+
+      expr: vector(1)
+
+      for: 10s
+
+      labels:
+        severity: warning
+
+      annotations:
+        summary: "Test Alert"
+
+        description: "This is a test alert for AlertManager validation."

@@ -1,0 +1,24 @@
+apiVersion: monitoring.coreos.com/v1
+kind: PrometheusRule
+metadata:
+  name: pod-crashloop-alert
+  namespace: monitoring
+
+spec:
+  groups:
+  - name: pod-alerts
+
+    rules:
+    - alert: PodCrashLooping
+
+      expr: rate(kube_pod_container_status_restarts_total[5m]) > 0
+
+      for: 2m
+
+      labels:
+        severity: critical
+
+      annotations:
+        summary: "Pod CrashLoop detected"
+
+        description: "Container restart rate detected within the last 5 minutes."
